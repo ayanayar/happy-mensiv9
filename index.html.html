@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Mensiversary, My Love!</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;1,9..144,300;1,9..144,600&family=Figtree:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#1c0612;--ink:#FFF4EC;--glow:#D52D00;--c3:#FF9A56;--c5:#D162A4;color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--ink);font-family:Figtree,system-ui,sans-serif;line-height:1.65}
+#aura{position:fixed;inset:0;pointer-events:none;transition:background 1.2s;background:radial-gradient(70vmax 70vmax at 50% 20%,color-mix(in srgb,var(--glow) 40%,transparent),transparent 70%),linear-gradient(to top,color-mix(in srgb,var(--glow) 28%,transparent),transparent 60%)}
+.slide{position:fixed;inset:0;display:flex;overflow-y:auto;padding:calc(4rem + env(safe-area-inset-top,0px)) 6vw calc(6rem + env(safe-area-inset-bottom,0px));transform:translateX(100%);opacity:0;visibility:hidden;transition:transform .9s cubic-bezier(.7,0,.2,1),opacity .9s,visibility 0s .9s}
+.slide.on{transform:none;opacity:1;visibility:visible;transition-delay:0s}
+.slide.past{transform:translateX(-100%)}
+.in{margin:auto;width:100%;max-width:640px;text-align:center}
+h1,h2,.serif{font-family:Fraunces,Georgia,serif;font-weight:300}
+h1{font-size:clamp(2.5rem,9.5vw,5.2rem);line-height:1.02;letter-spacing:-.02em;margin:1rem 0}
+h1 em{font-weight:600}
+h2{font-size:clamp(2rem,6vw,3.2rem);line-height:1.1;margin-bottom:.8rem}
+.sub{opacity:.85;max-width:34ch;margin:0 auto 1.6rem;font-size:1.1rem}
+button,.btn{font:inherit;font-weight:600;background:#FFF4EC;color:#4a1230;border:0;border-radius:99px;padding:.7rem 1.6rem;cursor:pointer;display:inline-block}
+.ghost{background:transparent;color:var(--ink);border:1px solid rgba(255,244,236,.4)}
+button:disabled{opacity:.3;cursor:not-allowed}
+button:focus-visible,.tile:focus-visible,.cell:focus-visible{outline:3px solid var(--c3);outline-offset:3px}
+.bigheart{width:min(44vw,190px);filter:drop-shadow(0 0 30px #D162A4);animation:beat 1.4s ease-in-out infinite}
+@keyframes beat{0%,100%{transform:scale(1)}14%{transform:scale(1.12)}28%{transform:scale(1)}42%{transform:scale(1.08)}}
+.h{position:fixed;bottom:-40px;z-index:1;pointer-events:none;animation:float linear forwards}
+@keyframes float{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+/* puzzle */
+#pz{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;width:min(86vw,400px);aspect-ratio:1;margin:1rem auto}
+.tile{border:0;padding:0;border-radius:8px;background-color:#3a1028;cursor:pointer;transition:transform .25s,box-shadow .25s}
+.tile.sel{transform:scale(.92);box-shadow:0 0 0 3px #FFF4EC}
+.row{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-top:1rem}
+.mini{background:none;color:var(--ink);opacity:.6;text-decoration:underline;padding:.4rem;font-weight:400;font-size:.9rem}
+#win{min-height:1.7em;margin-top:.8rem;font-family:Fraunces,Georgia,serif;font-style:italic;font-size:1.25rem;color:var(--c3)}
+/* pesan */
+.msg p{font-family:Fraunces,Georgia,serif;font-style:italic;font-size:clamp(1.25rem,3.8vw,1.7rem);line-height:1.55;margin-bottom:1.3rem;opacity:0}
+.on .msg p{animation:rise 1.4s forwards}
+.msg p:nth-child(2){animation-delay:1.4s!important}.msg p:nth-child(3){animation-delay:2.8s!important}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+/* galeri */
+.gal{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;max-width:520px;margin:1.2rem auto 0}
+.cell{position:relative;aspect-ratio:1;border:0;padding:0;border-radius:12px;background:center/cover no-repeat;overflow:hidden;color:#fff}
+.cell span{position:absolute;left:0;right:0;bottom:0;padding:.4rem;font-size:.8rem;background:linear-gradient(transparent,rgba(0,0,0,.55))}
+.cell svg{position:absolute;inset:0;margin:auto;width:34%;opacity:.7}
+.cell.has svg{display:none}
+/* surat */
+.paper{background:#FFF4EC;color:#4a1230;border-radius:6px;padding:2rem 1.6rem;text-align:left;box-shadow:0 20px 60px rgba(0,0,0,.4);position:relative}
+.paper p{font-family:Fraunces,Georgia,serif;font-size:1.12rem;line-height:1.7;margin-bottom:1rem}
+.paper .to{font-weight:600;font-style:italic;font-size:1.3rem}
+.paper .sg{text-align:right;font-style:italic;margin:0}
+.paper::before{content:"";position:absolute;inset:0 0 auto;height:8px;border-radius:6px 6px 0 0;background:linear-gradient(90deg,#D52D00,#EF7627,#FF9A56,#FFF4EC,#D162A4,#B55690,#A30262)}
+/* buket */
+#bsv{width:min(86vw,360px);height:auto;margin:.6rem auto;display:block;overflow:visible}
+.fl{cursor:pointer;outline:none}
+.fl .pet{transform:scale(0);transform-box:fill-box;transform-origin:center;transition:transform .9s cubic-bezier(.3,1.5,.5,1)}
+.fl.open .pet{transform:scale(1)}
+.fl .bud{transition:opacity .5s}
+.fl.open .bud{opacity:0}
+.fl:focus-visible .bud{stroke:#FFF4EC;stroke-width:3}
+#bq{min-height:1.7em;margin-bottom:.8rem;font-family:Fraunces,Georgia,serif;font-style:italic;font-size:1.2rem;color:var(--c3)}
+@media(prefers-reduced-motion:reduce){.fl .pet,.fl .bud{transition:none}}
+/* nav */
+.nav{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:1rem 5vw calc(1rem + env(safe-area-inset-bottom,0px))}
+.dots{display:flex;gap:10px}
+.dots button{width:12px;height:12px;padding:0;border-radius:50%;background:rgba(255,244,236,.3)}
+.dots button.on{background:#FFF4EC;transform:scale(1.3)}
+#mus{position:fixed;top:calc(.9rem + env(safe-area-inset-top,0px));right:5vw;z-index:5;padding:.45rem 1rem;font-size:.9rem}
+@media(prefers-reduced-motion:reduce){.bigheart{animation:none}.slide{transition:none}.on .msg p{animation:none;opacity:1}}
+</style>
+</head>
+<body>
+<div id="aura"></div>
+
+<!-- GANTI FILE LAGU DI FOLDER music/our-song.mp3 -->
+<audio id="mySong" src="music/our-song.mp3" loop preload="auto"></audio>
+<button id="mus" class="ghost" aria-pressed="false">♪ Musik mati</button>
+
+<section class="slide on"><div class="in">
+  <svg class="bigheart" viewBox="0 0 200 180" aria-hidden="true"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF9A56"/><stop offset=".5" stop-color="#D162A4"/><stop offset="1" stop-color="#A30262"/></linearGradient></defs><path d="M100 170C20 110 8 60 45 28c24-20 48-8 55 14 7-22 31-34 55-14 37 32 25 82-55 142z" fill="url(#g)"/></svg>
+  <h1>Happy <em>Mensiversary,</em> My Love!</h1>
+  <p class="sub">Bulan ke-9, dan aku masih jatuh cinta pada senja yang sama.</p>
+  <button id="start">Mulai</button>
+</div></section>
+
+<section class="slide"><div class="in">
+  <h2>Puzzle Kenangan</h2>
+  <p class="sub">Ketuk dua potongan untuk menukar tempatnya. Susun sampai utuh, lalu ada kejutan untukmu.</p>
+  <div id="pz"></div>
+  <p id="mv" aria-live="polite">Langkah: 0</p>
+  <p id="win" aria-live="polite"></p>
+  <div class="row"><button class="ghost" id="shuf">Acak ulang</button></div>
+  <button class="mini" id="skip">Lewati puzzle</button>
+</div></section>
+
+<section class="slide"><div class="in msg">
+  <svg class="bigheart" viewBox="0 0 200 180" aria-hidden="true"><path d="M100 170C20 110 8 60 45 28c24-20 48-8 55 14 7-22 31-34 55-14 37 32 25 82-55 142z" fill="url(#g)"/></svg>
+  <h2 style="margin-top:1rem">Kamu berhasil.</h2>
+  <p>Sembilan bulan lalu aku belum tahu bahwa senja bisa punya nama. Sekarang ia punya namamu.</p>
+  <p>Terima kasih sudah memilih aku, di hari yang ringan maupun hari yang berat.</p>
+  <p>Aku sayang kamu, hari ini dan di setiap bulan setelahnya.</p>
+</div></section>
+
+<section class="slide"><div class="in">
+  <h2>Our Memories</h2>
+  <p class="sub">Sembilan bulan, sembilan potongan senja.</p>
+  <div class="gal" id="gal"></div>
+</div></section>
+
+<section class="slide"><div class="in">
+  <h2>Buket untukmu</h2>
+  <p class="sub">Ketuk kuncupnya satu per satu, biar mekar.</p>
+  <svg id="bsv" viewBox="0 0 300 360" role="group" aria-label="Buket sembilan bunga"></svg>
+  <p id="bq" aria-live="polite"></p>
+  <button class="ghost" id="ball">Mekarkan semua</button>
+</div></section>
+
+<section class="slide"><div class="in">
+  <h2>Love Letter</h2>
+  <div class="paper">
+    <p class="to">Untuk pacarku yang cantik,</p>
+    <p>Hari ini genap sembilan bulan sejak kita memutuskan untuk saling pulang. Aku masih ingat betapa sederhananya semua dimulai: dua orang, satu senja, dan keberanian kecil untuk jujur.</p>
+    <p>Kamu membuat hari-hari biasa terasa seperti langit jingga yang baru dicat. Bersamamu, aku belajar bahwa mencintai tidak perlu keras. Cukup hadir, cukup setia, cukup saling menggenggam.</p>
+    <p>Terima kasih sudah tertawa bersamaku, bertahan bersamaku, dan menjadi rumah yang tidak pernah menuntut apa-apa.</p>
+    <p>Selamat bulan ke-9, sayang. Aku mau melihat senja bersamamu lagi, besok dan seterusnya.</p>
+    <p class="sg">Dari aku, yang selalu pulang padamu</p>
+  </div>
+</div></section>
+
+<nav class="nav"><button class="ghost" id="pv">Kembali</button><div class="dots" id="dots"></div><button id="nx">Lanjut</button></nav>
+
+<script>
+(function(){
+var COL=["#D52D00","#EF7627","#FF9A56","#FFF4EC","#D162A4","#B55690","#A30262"];
+var AURA=["#D52D00","#EF7627","#D162A4","#B55690","#D162A4","#A30262"];
+var sl=[].slice.call(document.querySelectorAll('.slide')),cur=0,solved=false,root=document.documentElement;
+
+/* MUSIK: file music/our-song.mp3 */
+var AU=document.getElementById('mySong');
+function lab(on){var b=document.getElementById('mus');b.textContent=on?'♪ Musik nyala':'♪ Musik mati';b.setAttribute('aria-pressed',on)}
+function music(){AU.play().then(function(){lab(true)}).catch(function(){lab(false)})}
+function musicOff(){AU.pause();lab(false)}
+document.getElementById('mus').onclick=function(){if(!AU.paused)musicOff();else music()};
+AU.onpause=function(){lab(false)};
+AU.onplay=function(){lab(true)};
+
+/* hati melayang */
+var hs=setInterval(function(){if(cur!==0&&cur!==2&&cur!==4||document.hidden)return;var h=document.createElement('span'),s=14+Math.random()*26;h.className='h';h.textContent='♥';h.style.cssText='left:'+Math.random()*100+'vw;font-size:'+s+'px;color:'+COL[[1,2,4,5,6][Math.floor(Math.random()*5)]]+';animation-duration:'+(5+Math.random()*5)+'s';h.onanimationend=function(){h.remove()};document.body.appendChild(h)},650);
+
+/* navigasi */
+var dots=document.getElementById('dots'),pv=document.getElementById('pv'),nx=document.getElementById('nx');
+sl.forEach(function(_,i){var b=document.createElement('button');b.setAttribute('aria-label','Halaman '+(i+1));b.onclick=function(){go(i)};dots.appendChild(b)});
+function go(i){
+  if(i<0||i>=sl.length)return;if(i>=2&&!solved){i=1;document.getElementById('win').textContent='Selesaikan puzzle dulu, ya.'}
+  cur=i;sl.forEach(function(s,k){s.classList.toggle('on',k===i);s.classList.toggle('past',k<i)});
+  [].forEach.call(dots.children,function(b,k){b.classList.toggle('on',k===i);b.disabled=k>=2&&!solved});
+  pv.style.visibility=i===0?'hidden':'visible';nx.style.visibility=i===sl.length-1?'hidden':'visible';nx.disabled=(i===1&&!solved);
+  root.style.setProperty('--glow',AURA[i]);
+}
+pv.onclick=function(){go(cur-1)};nx.onclick=function(){go(cur+1)};
+document.getElementById('start').onclick=function(){music();go(1)};
+addEventListener('keydown',function(e){if(e.key==='ArrowRight')go(cur+1);if(e.key==='ArrowLeft')go(cur-1)});
+var tx=null;addEventListener('touchstart',function(e){tx=e.touches[0].clientX},{passive:true});
+addEventListener('touchend',function(e){if(tx===null)return;var d=e.changedTouches[0].clientX-tx;tx=null;if(Math.abs(d)>70)go(cur+(d<0?1:-1))},{passive:true});
+
+/* PUZZLE: ganti foto di images/puzzle.jpeg */
+var PUZZLE_IMAGE='images/puzzle.jpeg';
+var pz=document.getElementById('pz'),order=[],sel=null,moves=0;
+function draw(){pz.innerHTML='';order.forEach(function(v,p){var t=document.createElement('button');t.className='tile'+(sel===p?' sel':'');t.style.backgroundImage='url("'+PUZZLE_IMAGE+'")';t.style.backgroundSize='300% 300%';t.style.backgroundPosition=(v%3)*50+'% '+Math.floor(v/3)*50+'%';t.setAttribute('aria-label','Potongan di posisi '+(p+1));t.onclick=function(){tap(p)};pz.appendChild(t)})}
+function done(){return order.every(function(v,i){return v===i})}
+function shuffle(){do{order=[0,1,2,3,4,5,6,7,8];for(var i=8;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=order[i];order[i]=order[j];order[j]=t}}while(done());sel=null;moves=0;document.getElementById('mv').textContent='Langkah: 0';document.getElementById('win').textContent='';draw()}
+function win(){solved=true;document.getElementById('win').textContent='Utuh! Seperti kita.';go(1);setTimeout(function(){go(2)},1800)}
+function tap(p){if(solved)return;if(sel===null)sel=p;else if(sel===p)sel=null;else{var t=order[sel];order[sel]=order[p];order[p]=t;sel=null;moves++;document.getElementById('mv').textContent='Langkah: '+moves}draw();if(done())win()}
+document.getElementById('shuf').onclick=function(){if(!solved)shuffle()};
+document.getElementById('skip').onclick=win;
+
+/* GALERI: ganti foto di folder images/ dengan nama memory-1.jpeg s.d. memory-9.jpeg */
+var gal=document.getElementById('gal');
+for(var i=1;i<=9;i++){
+  var b=document.createElement('div');b.className='cell';
+  b.style.backgroundColor=COL[Math.min(6,Math.round((i-1)*6/8))];
+  b.style.backgroundImage='url("images/memory-'+i+'.jpeg")';
+  b.innerHTML='<span>Bulan ke-'+i+'</span>';
+  gal.appendChild(b);
+}
+
+/* buket virtual */
+var bq=document.getElementById('bq'),bl=0,sv2=['<defs><linearGradient id="wp" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF4EC"/><stop offset="1" stop-color="#D162A4"/></linearGradient></defs>'],hd=[];
+for(var i=0;i<9;i++){var a=(-50+i*12.5)*Math.PI/180,r=160+(i%2)*30,x=150+Math.sin(a)*r,y=310-Math.cos(a)*r,c=COL[Math.min(6,Math.round(i*6/8))],p='';
+  for(var k=0;k<6;k++)p+='<ellipse rx="8" ry="16" cy="-14" transform="rotate('+k*60+')" fill="'+c+'" stroke="rgba(0,0,0,.15)"/>';
+  sv2.push('<path d="M150 320Q'+(150+(x-150)*.3)+' '+((320+y)/2)+' '+x+' '+y+'" stroke="#6bb58a" stroke-width="4" fill="none" stroke-linecap="round"/>');
+  hd.push('<g transform="translate('+x+' '+y+')" class="fl" tabindex="0" role="button" aria-label="Mekarkan bunga '+(i+1)+'"><circle r="22" fill="transparent"/><circle class="bud" r="9" fill="'+c+'"/><g class="pet">'+p+'<circle r="7" fill="#FFE08A"/></g></g>')}
+sv2.push('<path d="M92 298L208 298L174 352L126 352Z" fill="url(#wp)"/><ellipse cx="136" cy="304" rx="16" ry="9" fill="#A30262"/><ellipse cx="164" cy="304" rx="16" ry="9" fill="#A30262"/><circle cx="150" cy="304" r="6" fill="#D52D00"/>');
+document.getElementById('bsv').innerHTML=sv2.concat(hd).join('');
+function bloom(g){if(g.classList.contains('open'))return;g.classList.add('open');if(++bl===9)bq.textContent='Sembilan bunga untuk sembilan bulan kita.'}
+[].forEach.call(document.querySelectorAll('.fl'),function(g){g.onclick=function(){bloom(g)};g.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();bloom(g)}}});
+document.getElementById('ball').onclick=function(){[].forEach.call(document.querySelectorAll('.fl'),function(g,n){setTimeout(function(){bloom(g)},n*220)})};
+
+shuffle();go(0);
+})();
+</script>
+</body>
+</html>
